@@ -84,6 +84,7 @@ public:
 		MultithreadedRSX,
 		VBlankRate,
 		RelaxedZCULL,
+		SkipfenceHack,
 
 		// Performance Overlay
 		PerfOverlayEnabled,
@@ -310,6 +311,7 @@ private:
 		{ DisableAsyncShaderCompiler, { "Video", "Disable Asynchronous Shader Compiler"}},
 		{ MultithreadedRSX,           { "Video", "Multithreaded RSX"}},
 		{ RelaxedZCULL,               { "Video", "Relaxed ZCULL Sync"}},
+		{ SkipfenceHack,              { "Video", "Skip Vulkan Fence"}},
 		{ AnisotropicFilterOverride,  { "Video", "Anisotropic Filter Override"}},
 		{ ResolutionScale,            { "Video", "Resolution Scale"}},
 		{ MinimumScalableDimension,   { "Video", "Minimum Scalable Dimension"}},

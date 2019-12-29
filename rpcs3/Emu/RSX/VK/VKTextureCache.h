@@ -289,7 +289,10 @@ namespace vk
 			else
 			{
 				// If this is speculated, it should only occur once
-				verify(HERE), vkGetEventStatus(*m_device, dma_fence) == VK_EVENT_RESET;
+				if (!g_cfg.video.skipfence_hack)
+				{
+					verify(HERE), vkGetEventStatus(*m_device, dma_fence) == VK_EVENT_RESET;
+				}
 			}
 
 			cmd.set_flag(vk::command_buffer::cb_has_dma_transfer);
@@ -389,8 +392,11 @@ namespace vk
 			AUDIT(synchronized);
 
 			// Synchronize, reset dma_fence after waiting
-			vk::wait_for_event(dma_fence, GENERAL_WAIT_TIMEOUT);
-			vkResetEvent(*m_device, dma_fence);
+			if (!g_cfg.video.skipfence_hack)
+			{
+				vk::wait_for_event(dma_fence, GENERAL_WAIT_TIMEOUT);
+				vkResetEvent(*m_device, dma_fence);
+			}
 
 			const auto range = get_confirmed_range();
 			vk::flush_dma(range.start, range.length());
