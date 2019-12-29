@@ -934,6 +934,10 @@ settings_dialog::settings_dialog(std::shared_ptr<gui_settings> guiSettings, std:
 	xemu_settings->EnhanceCheckBox(ui->relaxedZCULL, emu_settings::RelaxedZCULL);
 	SubscribeTooltip(ui->relaxedZCULL, json_advanced["relaxedZCULL"].toString());
 
+	xemu_settings->EnhanceCheckBox(ui->skipfenceHack, emu_settings::SkipfenceHack);
+	SubscribeTooltip(ui->skipfenceHack, json_advanced["skipfenceHack"].toString());
+
+
 	// Comboboxes
 
 	xemu_settings->EnhanceComboBox(ui->maxSPURSThreads, emu_settings::MaxSPURSThreads, true);
