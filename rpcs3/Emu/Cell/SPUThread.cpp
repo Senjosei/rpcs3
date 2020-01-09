@@ -1374,7 +1374,7 @@ void spu_thread::do_dma_transfer(const spu_mfc_cmd& args)
 				break;
 			}
 
-			assert(size & 0xf == 0);
+			// assert(size & 0xf == 0);
 			auto lock = vm::passive_lock(eal & -128, ::align(eal + size, 128));
 			memmove(dst, src, size);
 			lock->release(0);
@@ -1409,7 +1409,7 @@ void spu_thread::do_dma_transfer(const spu_mfc_cmd& args)
 	}
 	default:
 	{
-		assert(size & 0xf == 0);
+		// assert(size & 0xf == 0);
 		memmove(dst, src, size);
 		break;
 	}
